@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# 1. Setup Git configuration
+git config --global user.email "cutestarpanda+openclaw@gmail.com"
+git config --global user.name "Nirupam"
+
+# 2. Clone your private memory repository into the OpenClaw workspace
+git clone https://${GITHUB_TOKEN}@github.com/nirupamdev/openclaw-memory.git ~/.openclaw/workspace
+
+# 3. Start the OpenClaw Gateway in the background
+openclaw &
+
+# 4. Auto-sync memory every 5 minutes to prevent data loss
+while true; do
+  sleep 300
+  cd ~/.openclaw/workspace
+  git add .
+  git commit -m "Auto-saving agent memory"
+  git push
+done
