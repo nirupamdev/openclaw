@@ -1,14 +1,14 @@
 #!/bin/bash
 
 # 1. Setup Git configuration
-git config --global user.email "cutestarpanda+openclaw@gmail.com"
-git config --global user.name "Nirupam"
+git config --global user.email "cutestar.panda@gmail.com"
+git config --global user.name "Nirupam Gayen"
 
 # 2. Clone your private memory repository into the OpenClaw workspace
 git clone https://${GITHUB_TOKEN}@github.com/nirupamdev/openclaw-memory.git ~/.openclaw/workspace
 
-# 3. Start the OpenClaw Gateway in the background
-openclaw &
+# 3. Start the OpenClaw Gateway and bind it to Render's network
+openclaw gateway --bind lan --port 8080 &
 
 # 4. Auto-sync memory every 5 minutes to prevent data loss
 while true; do
