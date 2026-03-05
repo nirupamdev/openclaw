@@ -7,8 +7,8 @@ git config --global user.name "Nirupam Gayen"
 # 2. Clone your private memory repository into the OpenClaw workspace
 git clone https://${GITHUB_TOKEN}@github.com/nirupamdev/openclaw-memory.git ~/.openclaw/workspace
 
-# 3. Start the OpenClaw Gateway and expose it globally
-openclaw gateway --bind 0.0.0.0 --port 8080 &
+# 3. Start the OpenClaw Gateway with LAN bind + explicit Auth Token
+openclaw gateway --bind lan --port 8080 --allow-unconfigured --auth token --token "${GITHUB_TOKEN}" &
 
 # 4. Auto-sync memory every 5 minutes to prevent data loss
 while true; do
